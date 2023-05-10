@@ -34,6 +34,10 @@ const Message = mongoose.model("Message", messageSchema);
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "default-src 'self' http: https:");
+  next();
+});
 
 app.post("/api/guests", async (req, res) => {
   const { name } = req.body;
