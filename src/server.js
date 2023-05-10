@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
 
@@ -31,6 +32,7 @@ const messageSchema = new mongoose.Schema({
 const Guest = mongoose.model("Guest", guestSchema);
 const Message = mongoose.model("Message", messageSchema);
 
+app.use(cors());
 app.use(bodyParser.json());
 
 app.post("/api/guests", async (req, res) => {
